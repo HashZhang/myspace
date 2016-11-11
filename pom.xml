@@ -9,8 +9,9 @@
     <packaging>pom</packaging>
     <version>${myspace.version}</version>
     <modules>
-        <module>myspace-blog</module>
-        <module>myspace-common</module>
+        <module>common</module>
+        <module>blog</module>
+        <module>elasticsearch</module>
     </modules>
 
     <properties>

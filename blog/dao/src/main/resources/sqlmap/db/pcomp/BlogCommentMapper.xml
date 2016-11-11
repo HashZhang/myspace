@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hash.myspace.blog.dao.mapper.BlogCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.hash.myspace.blog.common.domain.BlogComment" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="blog_id" property="blogId" jdbcType="VARCHAR" />
+    <result column="super_comment_id" property="superCommentId" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.hash.myspace.blog.common.domain.BlogComment" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, blog_id, super_comment_id, is_deleted, created_time, created_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_comment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from blog_comment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cn.hash.myspace.blog.common.domain.BlogComment" >
+    insert into blog_comment (id, blog_id, super_comment_id, 
+      is_deleted, created_time, created_by, 
+      content)
+    values (#{id,jdbcType=VARCHAR}, #{blogId,jdbcType=VARCHAR}, #{superCommentId,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=BIT}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hash.myspace.blog.common.domain.BlogComment" >
+    insert into blog_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="blogId != null" >
+        blog_id,
+      </if>
+      <if test="superCommentId != null" >
+        super_comment_id,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="blogId != null" >
+        #{blogId,jdbcType=VARCHAR},
+      </if>
+      <if test="superCommentId != null" >
+        #{superCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.hash.myspace.blog.common.domain.BlogComment" >
+    update blog_comment
+    <set >
+      <if test="blogId != null" >
+        blog_id = #{blogId,jdbcType=VARCHAR},
+      </if>
+      <if test="superCommentId != null" >
+        super_comment_id = #{superCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.hash.myspace.blog.common.domain.BlogComment" >
+    update blog_comment
+    set blog_id = #{blogId,jdbcType=VARCHAR},
+      super_comment_id = #{superCommentId,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.hash.myspace.blog.common.domain.BlogComment" >
+    update blog_comment
+    set blog_id = #{blogId,jdbcType=VARCHAR},
+      super_comment_id = #{superCommentId,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

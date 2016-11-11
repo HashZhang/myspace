@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hash.myspace.blog.dao.mapper.BlogKindMapper" >
+  <select id="countIfExistsBlogRelToKind" parameterType="java.lang.String">
+    select count(*) from blog_kind_rel
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+    and kind_id = #{kindId,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="bindBlogWithKind" parameterType="java.lang.String">
+    insert into blog_kind_rel(blog_id,kind_id)
+    value (
+    #{blogId,jdbcType=VARCHAR},
+    #{kindId,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <delete id="unbindBlogAndKind" parameterType="java.lang.String">
+    delete from blog_kind_rel
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+    and kind_id = #{kindId,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="selectAllAvailableBySuperKindId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from blog_kind
+    where super_kind_id = #{kindId,jdbcType=VARCHAR}
+    and  is_deleted = 0
+    order by created_time desc
+  </select>
+  <select id="selectAllKindIdByBlogId" resultType="java.lang.String" parameterType="java.lang.String">
+    select
+    kind_id from blog_kind_rel
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </select>
+</mapper>
