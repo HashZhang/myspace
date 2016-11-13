@@ -1,12 +1,18 @@
 package com.cn.hash.myspace.blog.common.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 public class BlogKind implements Serializable {
     private String id;
-
+    @NotBlank(message="类别名不能为空")
     private String name;
+    @NotBlank(message="图标不能为空")
+    private String icon;
+    private Boolean isHomed;
 
     private String superKindId;
 
@@ -36,6 +42,22 @@ public class BlogKind implements Serializable {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
+    public Boolean getIsHomed() {
+        return isHomed;
+    }
+
+    public void setIsHomed(Boolean isHomed) {
+        this.isHomed = isHomed;
     }
 
     public String getSuperKindId() {
@@ -94,6 +116,8 @@ public class BlogKind implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", icon=").append(icon);
+        sb.append(", isHomed=").append(isHomed);
         sb.append(", superKindId=").append(superKindId);
         sb.append(", isDeleted=").append(isDeleted);
         sb.append(", createdTime=").append(createdTime);

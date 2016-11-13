@@ -14,6 +14,8 @@ public interface BlogTagMapper {
 
     BlogTag selectByPrimaryKey(String id);
 
+    BlogTag selectByName(String name);
+
     int countIfExistsBlogRelToTag(@Param("blogId")String blogId, @Param("tagId")String tagId);
 
     int bindBlogWithTag(@Param("blogId")String blogId, @Param("tagId")String tagId);

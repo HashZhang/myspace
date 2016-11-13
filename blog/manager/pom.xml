@@ -22,5 +22,10 @@
             <artifactId>myspace.blog.dao</artifactId>
             <version>${myspace.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.cn.hash</groupId>
+            <artifactId>myspace.elasticsearch</artifactId>
+            <version>${myspace.version}</version>
+        </dependency>
     </dependencies>
 </project>

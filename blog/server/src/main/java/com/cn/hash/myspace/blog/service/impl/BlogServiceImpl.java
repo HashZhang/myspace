@@ -3,6 +3,7 @@ package com.cn.hash.myspace.blog.service.impl;
 import com.cn.hash.myspace.blog.common.domain.Blog;
 import com.cn.hash.myspace.blog.common.domain.BlogKind;
 import com.cn.hash.myspace.blog.common.domain.BlogTag;
+import com.cn.hash.myspace.blog.manager.BlogManager;
 import com.cn.hash.myspace.blog.service.BlogService;
 import com.cn.hash.myspace.common.utils.ExceptionUtils;
 import com.github.pagehelper.PageInfo;
@@ -23,12 +24,12 @@ public class BlogServiceImpl implements BlogService {
     private final static Logger log = LoggerFactory.getLogger(BlogServiceImpl.class);
 
     @Autowired
-    private BlogManager
+    private BlogManager blogManager;
 
     @Override
-    public String addBlog(Blog blog, List<BlogKind> blogKinds, List<BlogTag> blogTags) throws Exception {
+    public String addBlog(Blog blog, List<String> blogKindIds, List<BlogTag> blogTags) throws Exception {
         try {
-            return
+            return blogManager.addBlog(blog,blogKindIds,blogTags);
         } catch (Exception e) {
             log.warn(ExceptionUtils.getStackTrace(e));
             throw new Exception(e);
@@ -37,41 +38,81 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public boolean updateBlogContent(Blog blog) throws Exception {
-        return false;
+        try {
+            return blogManager.updateBlogContent(blog);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
-    public boolean updateBlogKind(String blogId, List<BlogKind> blogKinds) throws Exception {
-        return false;
+    public boolean updateBlogKind(String blogId, List<String> blogKindIds) throws Exception {
+        try {
+            return blogManager.updateBlogKind(blogId,blogKindIds);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
     public boolean updateBlogTags(String blogId, List<BlogTag> blogTags) throws Exception {
-        return false;
+        try {
+            return blogManager.updateBlogTags(blogId,blogTags);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
     public boolean deleteBlog(String blogId) throws Exception {
-        return false;
+        try {
+            return blogManager.deleteBlog(blogId);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
-    public Blog getBlog(String BlogId, String ip) throws Exception {
-        return null;
+    public Blog getBlog(String blogId, String ip) throws Exception {
+        try {
+            return blogManager.getBlog(blogId,ip);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
     public PageInfo<Blog> getAllBlog(int pageNumber) throws Exception {
-        return null;
+        try {
+            return blogManager.getAllBlog(pageNumber);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
     public PageInfo<Blog> getAllBlogByKind(String KindId, int pageNumber) throws Exception {
-        return null;
+        try {
+            return blogManager.getAllBlogByKind(KindId,pageNumber);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 
     @Override
     public PageInfo<Blog> getAllBlogByTag(String tagId, int pageNumber) throws Exception {
-        return null;
+        try {
+            return blogManager.getAllBlogByTag(tagId,pageNumber);
+        } catch (Exception e) {
+            log.warn(ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
+        }
     }
 }

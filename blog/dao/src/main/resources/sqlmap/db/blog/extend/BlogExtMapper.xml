@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hash.myspace.blog.dao.mapper.BlogMapper" >
+    <select id="selectAllAvailable" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog
+    where is_deleted = 0
+    order by is_topped,created_time desc
+  </select>
+
+  <select id="selectAllAvailableByKindId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog
+    where is_deleted = 0
+    and id in (select blog_id from blog_kind_rel where kind_id = #{kindId,jdbcType=VARCHAR})
+    order by is_topped,created_time desc
+  </select>
+
+    <select id="selectAllAvailableByTagId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from blog
+        where is_deleted = 0
+        and id in (select blog_id from blog_tag_rel where tag_id = #{tagId,jdbcType=VARCHAR})
+        order by is_topped, created_time desc
+    </select>
+</mapper>

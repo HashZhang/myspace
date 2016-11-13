@@ -14,6 +14,8 @@ public interface BlogKindService {
 
     List<BlogKind> getAllKinds() throws Exception;
 
+    BlogKind getKind(String kindId) throws Exception;
+
     boolean updateKind(BlogKind blogKind) throws Exception;
 
     boolean deleteKind(String kindId) throws Exception;

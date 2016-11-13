@@ -13,11 +13,11 @@ import java.util.List;
  * @date 2016/11/11.
  */
 public interface BlogService {
-    String addBlog(Blog blog, List<BlogKind> blogKinds, List<BlogTag> blogTags) throws Exception;
+    String addBlog(Blog blog, List<String> blogKindIds, List<BlogTag> blogTags) throws Exception;
 
     boolean updateBlogContent(Blog blog) throws Exception;
 
-    boolean updateBlogKind(String blogId, List<BlogKind> blogKinds) throws Exception;
+    boolean updateBlogKind(String blogId, List<String> blogKindIds) throws Exception;
 
     boolean updateBlogTags(String blogId, List<BlogTag> blogTags) throws Exception;
 

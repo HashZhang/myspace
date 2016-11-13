@@ -20,7 +20,7 @@ public interface BlogKindMapper {
 
     int unbindBlogAndKind(@Param("blogId")String blogId, @Param("kindId")String kindId);
 
-    int selectAllAvailableBySuperKindId(String kindId);
+    List<BlogKind> selectAllAvailableBySuperKindId(String kindId);
 
     int updateByPrimaryKeySelective(BlogKind record);
 

@@ -10,6 +10,8 @@ public class Blog implements Serializable {
 
     private Integer kind;
 
+    private Boolean isHomed;
+
     private Boolean isDeleted;
 
     private Date createdTime;
@@ -50,6 +52,14 @@ public class Blog implements Serializable {
 
     public void setKind(Integer kind) {
         this.kind = kind;
+    }
+
+    public Boolean getIsHomed() {
+        return isHomed;
+    }
+
+    public void setIsHomed(Boolean isHomed) {
+        this.isHomed = isHomed;
     }
 
     public Boolean getIsDeleted() {
@@ -125,6 +135,7 @@ public class Blog implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", title=").append(title);
         sb.append(", kind=").append(kind);
+        sb.append(", isHomed=").append(isHomed);
         sb.append(", isDeleted=").append(isDeleted);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", createdBy=").append(createdBy);

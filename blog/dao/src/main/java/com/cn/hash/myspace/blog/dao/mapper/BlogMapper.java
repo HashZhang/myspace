@@ -1,6 +1,7 @@
 package com.cn.hash.myspace.blog.dao.mapper;
 
 import com.cn.hash.myspace.blog.common.domain.Blog;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -13,11 +14,11 @@ public interface BlogMapper {
 
     Blog selectByPrimaryKey(String id);
     
-    List<Blog> selectAllAvailable();
-    
-    List<Blog> selectAllAvailableByKindId(String kindId);
-    
-    List<Blog> selectAllAvailableByTagId(String tagId);
+    Page<Blog> selectAllAvailable();
+
+    Page<Blog> selectAllAvailableByKindId(String kindId);
+
+    Page<Blog> selectAllAvailableByTagId(String tagId);
 
     int updateByPrimaryKeySelective(Blog record);
 

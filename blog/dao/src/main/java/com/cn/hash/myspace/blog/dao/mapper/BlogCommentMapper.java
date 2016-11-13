@@ -1,6 +1,7 @@
 package com.cn.hash.myspace.blog.dao.mapper;
 
 import com.cn.hash.myspace.blog.common.domain.BlogComment;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ public interface BlogCommentMapper {
 
     BlogComment selectByPrimaryKey(String id);
 
-    List<BlogComment> selectAllAvailable();
+    Page<BlogComment> selectAllAvailable();
 
-    List<BlogComment> selectAllAvailableByBlogId(String blogId);
+    Page<BlogComment> selectAllAvailableByBlogId(String blogId);
 
     List<BlogComment> selectAllAvailableBySuperCommentId(String commentId);
 

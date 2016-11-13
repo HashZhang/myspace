@@ -1,5 +1,7 @@
 package com.cn.hash.myspace.common.utils;
 
+import com.cn.hash.myspace.common.Constants;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -24,8 +26,8 @@ public class IdGenerator {
     private final static String SYSTEM_FORMAT = "%0" + SYSTEM_LENGTH + "d";
 
     static {
-        system.put("myspace-blog", 1);
-        systemShard.put("myspace-blog", 1);
+        system.put(Constants.BLOG_SYSTEM, 1);
+        systemShard.put(Constants.BLOG_SYSTEM, 1);
     }
 
     public static String getID(String sys) {

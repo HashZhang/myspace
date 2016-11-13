@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hash.myspace.blog.dao.mapper.BlogTagMapper" >
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from blog_tag
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <select id="countIfExistsBlogRelToTag" parameterType="java.lang.String">
+    select count(*) from blog_tag_rel
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+    and tag_id = #{tagId,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="bindBlogWithTag" parameterType="java.lang.String">
+    insert into blog_tag_rel(blog_id,tag_id)
+    value (
+    #{blogId,jdbcType=VARCHAR},
+    #{tagId,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <delete id="unbindBlogAndTag" parameterType="java.lang.String">
+    delete from blog_tag_rel
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+    and tag_id = #{tagId,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectAllTagIdByBlogId" resultType="java.lang.String" parameterType="java.lang.String">
+    select
+    tag_id from blog_tag_rel
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,5 +1,9 @@
 package com.cn.hash.myspace.common.dto;
 
+import com.cn.hash.myspace.common.utils.ConcurrentDateUtil;
+
+import java.util.Date;
+
 /**
  * Json结果封装，用于前端传递
  *
@@ -10,7 +14,7 @@ package com.cn.hash.myspace.common.dto;
 public class JsonResult<T> {
 	private String message;
 	
-	private String timestamp;
+	private String timestamp = ConcurrentDateUtil.format(new Date());
 	
 	private T data;
 
@@ -24,10 +28,6 @@ public class JsonResult<T> {
 
 	public String getTimestamp() {
 		return timestamp;
-	}
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public T getData() {

@@ -12,6 +12,8 @@
         <module>common</module>
         <module>blog</module>
         <module>elasticsearch</module>
+        <module>web</module>
+        <module>ambry</module>
     </modules>
 
     <properties>

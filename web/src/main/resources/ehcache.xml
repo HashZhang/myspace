@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="gbk"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd">
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="5" timeToLiveSeconds="10"
+                  overflowToDisk="false"/>
+    <!--
+        配置自定义缓存
+        maxElementsInMemory：缓存中允许创建的最大对象数
+        eternal：缓存中对象是否为永久的，如果是，超时设置将被忽略，对象从不过期。
+        timeToIdleSeconds：缓存数据的钝化时间，也就是在一个元素消亡之前，
+                    两次访问时间的最大时间间隔值，这只能在元素不是永久驻留时有效，
+                    如果该值是 0 就意味着元素可以停顿无穷长的时间。
+        timeToLiveSeconds：缓存数据的生存时间，也就是一个元素从构建到消亡的最大时间间隔值，
+                    这只能在元素不是永久驻留时有效，如果该值是0就意味着元素可以停顿无穷长的时间。
+        overflowToDisk：内存不足时，是否启用磁盘缓存。
+        memoryStoreEvictionPolicy：缓存满了之后的淘汰算法。
+    -->
+    <!--
+        页面缓存，由于模板在前端实现，所以缓存时间可以长一些
+    -->
+    <!--
+        在开发的时候，不能启用页面缓存，否则影响前端更新调试，在web.xml中配置缓存启用
+    -->
+    <cache name="SimplePageCachingFilter"
+           maxElementsInMemory="10000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="6000"
+           memoryStoreEvictionPolicy="LFU"/>
+    <!--
+        用户查看有权限的软件列表缓存，因为生成这个列表有些麻烦并且消耗性能，所以缓存起来，但是注意在用户新建软件时要使对应的缓存失效，否则会在软件管理页面看不到新的
+    -->
+    <cache name="UserSoftwareCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="50"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <!--
+        其他的不缓存的原因：1.后端微服务实现了更细粒度的缓存，前端做太复杂
+        2. 有些访问统计之类的业务是在后端实现的。前端缓存的话，那么统计就会很不准
+    -->
+</ehcache>

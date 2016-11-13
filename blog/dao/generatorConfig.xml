@@ -39,14 +39,14 @@
         </javaModelGenerator>
 
         <!-- generate xml -->
-        <sqlMapGenerator targetPackage="sqlmap.db.pcomp" targetProject="${project.build.directory}/../src/main/resources">
+        <sqlMapGenerator targetPackage="sqlmap.db.blog" targetProject="${project.build.directory}/../src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <!-- generate Mapper -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cn.hash.myspace.blog.dao.mapper" targetProject="${project.build.directory}/../src/main/java">
-            <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
+        <!--&lt;!&ndash; generate Mapper &ndash;&gt;-->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.cn.hash.myspace.blog.dao.mapper" targetProject="${project.build.directory}/../src/main/java">-->
+            <!--<property name="enableSubPackages" value="true"/>-->
+        <!--</javaClientGenerator>-->
 
         <!-- 
 		  catalog CDATA #IMPLIED
@@ -69,26 +69,26 @@
 		  delimitIdentifiers CDATA #IMPLIED
 		  delimitAllColumns CDATA #IMPLIED
          -->
-        <!--<table schema="" tableName="blog" domainObjectName="Blog" modelType="flat"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
+        <table schema="" tableName="blog" domainObjectName="Blog" modelType="flat"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
         <table schema="" tableName="blog_comment" domainObjectName="BlogComment" modelType="flat"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <!--<table schema="" tableName="blog_tag" domainObjectName="BlogTag" modelType="flat"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
-        <!--<table schema="" tableName="blog_kind" domainObjectName="BlogKind" modelType="flat"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
+        <table schema="" tableName="blog_tag" domainObjectName="BlogTag" modelType="flat"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="" tableName="blog_kind" domainObjectName="BlogKind" modelType="flat"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
 
     </context>
 </generatorConfiguration>
